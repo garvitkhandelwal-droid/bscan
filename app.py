@@ -9,8 +9,14 @@ from dotenv import load_dotenv
 # ── Load Gemini API Key ───────────────────────────────────────────────────────
 load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-
-# Fallback to Streamlit secrets if running on Streamlit Cloud
+hide_menu_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        header {visibility: hidden;}
+        </style>
+        """
+st.markdown(hide_menu_style, unsafe_html=True)
 if not GEMINI_API_KEY:
     try:
         if "GEMINI_API_KEY" in st.secrets:
